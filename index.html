@@ -25,7 +25,7 @@
             height: 1px;
             bottom: -2px;
             left: 0;
-            background-color: oklch(55% 0.24 312);
+            background-color: var(--color-primary);
             /* accent color */
             transition: width 0.3s ease;
         }
@@ -67,28 +67,20 @@
                 <a href="/" class="text-3xl font-bold text-base-content">
                     Agnivarcas
                 </a>
-                <div class="hidden md:flex items-center">
-                    <label class="flex cursor-pointer gap-2">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="5" />
-                            <path
-                                d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
-                        </svg>
-                        <input type="checkbox" value="theme-d" class="toggle theme-controller" />
-                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                        </svg>
-                    </label>
-                </div>
+
                 <!-- Search (Desktop) -->
                 <div class="hidden md:flex items-center">
-                    <div class="form-control">
-                        <div class="input-group">
+                    <div class="form-control group relative">
+                        <div class="input-group p-0 transition-all duration-500 ease-in-out">
                             <input type="text" placeholder="Search..."
-                                class="input input-bordered bg-base-200 text-base-content max-w-40 focus:w-64 transition-all duration-300" />
-                            <button class="btn btn-square bg-primary text-primary-content border-none">
+                                class="input input-bordered bg-base-200 text-base-content  group-focus-within:w-64 focus:w-64 transition-all duration-500 ease-in-out opacity-0 group-focus-within:opacity-100 focus:opacity-100"
+                                style="width: 0rem; opacity: 0;"
+                                onfocus="this.style.width='16rem'; this.style.opacity='1';"
+                                onblur="if(!this.value){this.style.width='0rem'; this.style.opacity='0';}" />
+                            <button
+                                class="btn btn-square bg-primary text-primary-content border-none transition-transform duration-300"
+                                onclick="const input=this.previousElementSibling; input.style.width='16rem'; input.style.opacity='1'; input.focus();"
+                                aria-label="Open search">
                                 <span class="material-symbols-outlined">
                                     search
                                 </span>
@@ -106,24 +98,65 @@
                                 d="M4 6h16M4 12h16M4 18h16" />
                         </svg>
                     </button>
+                    <label class="swap swap-rotate">
+                        <!-- this hidden checkbox controls the state -->
+                        <input type="checkbox" class="theme-controller" value="theme-d" />
+
+                        <!-- sun icon -->
+                        <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                        </svg>
+
+                        <!-- moon icon -->
+                        <svg class="swap-on h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                        </svg>
+                    </label>
                 </div>
             </div>
 
             <!-- Main Navigation (Desktop) -->
-            <nav class="hidden md:flex justify-center overflow-x-auto py-2 border-t border-base-200">
+            <nav class="hidden md:flex justify-center py-2 border-t border-base-200">
                 <ul class="flex flex-wrap justify-center space-x-6">
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Home</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Religion</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Comparative Thought</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Esoterica</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Literature</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Society & Culture</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">History</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Art</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Journal</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Essay</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">About</a></li>
-                    <li><a href="#" class="nav-link text-base-content hover:text-accent">Contact</a></li>
+                    <li><a href="#" class="nav-link text-base-content hover:text-primary">History</a></li>
+                    <li><a href="#" class="nav-link text-base-content hover:text-primary">Religion</a></li>
+                    <li><a href="#" class="nav-link text-base-content hover:text-primary">Society & Culture</a></li>
+                    <li class="dropdown dropdown-hover dropdown-center relative">
+                        <label tabindex="0" class="nav-link text-base-content hover:text-primary m-1">More</label>
+                        <ul tabindex="0" class="dropdown-content absolute z-50 p-2 shadow bg-base-100 w-52 space-y-2">
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Comparative
+                                    Thought</a></li>
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Esoterica</a></li>
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Literature</a></li>
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Art</a></li>
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Journal</a></li>
+                            <li><a href="#" class="nav-link text-base-content hover:text-primary">Essay</a></li>
+                        </ul>
+                    </li>
+
+                    <li><a href="#" class="nav-link text-base-content hover:text-primary">About</a></li>
+                    <label class="swap swap-rotate">
+                        <!-- this hidden checkbox controls the state -->
+                        <input type="checkbox" class="theme-controller" value="theme-d" />
+
+                        <!-- sun icon -->
+                        <svg class="swap-off h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+                        </svg>
+
+                        <!-- moon icon -->
+                        <svg class="swap-on h-6 w-6 fill-current" xmlns="http://www.w3.org/2000/svg"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+                        </svg>
+                    </label>
                 </ul>
             </nav>
 
@@ -168,23 +201,26 @@
     <main class="flex-grow container mx-auto px-4 py-8">
         <div style="width:100%; height:100dvh; ">
             <img src="fancy.png" alt="Rotating Image" class="rotating-image h-1/2 w-auto" id="rotatingImage"
-                style="position: relative;top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(0deg);">
+                style="position: relative;top: 50%; left: 50%; transform: translate(-50%, -100%) rotate(0deg);">
+            <div class="form-control max-w-md mx-auto my-10">
+                <div class="flex justify-between gap-3">
+                    <input type="email" placeholder="Your email address"
+                        class="input input-bordered bg-base-100 w-full mb-2" />
+
+                    <button class="btn btn-outline btn-primary">Subscribe</button>
+                </div>
+                <small class="flex justify-center">Subscribe To Newsletter</small>
+            </div>
         </div>
         <!-- Newsletter Section -->
-        <section class="mb-12 bg-base-200 p-8 rounded-lg">
+        <!-- <section class="mb-12 bg-base-200 p-8 rounded-lg">
             <div class="text-center">
                 <h2 class="text-2xl font-bold mb-4">Subscribe to Our Newsletter</h2>
                 <p class="mb-6 max-w-xl mx-auto">Stay updated with our latest articles, insights, and exclusive content
                     delivered directly to your inbox.</p>
-                <div class="form-control max-w-md mx-auto">
-                    <div class="flex-col gap-3">
-                        <input type="email" placeholder="Your email address"
-                            class="input input-bordered bg-base-100 w-full mb-2" />
-                        <button class="btn btn-primary">Subscribe</button>
-                    </div>
-                </div>
+
             </div>
-        </section>
+        </section> -->
         <div class="container mx-auto px-4 py-12">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Category 1 -->
@@ -459,7 +495,7 @@
 
             window.addEventListener('scroll', function () {
                 const rotation = window.scrollY / 1; // Lower number will -> faster rotation
-                rotatingImage.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+                rotatingImage.style.transform = `translate(-50%, -100%) rotate(${rotation}deg)`;
             });
         });
     </script>
