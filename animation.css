@@ -1,0 +1,21 @@
+/* .fire-sprite {
+  width: 64px;   
+  height: 64px;  
+  background-image: url('https://opengameart.org/sites/default/files/fire8_64_0.png'); 
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+} */
+.fire-sprite {
+  width: 166.6px;
+  height: 166.6px;
+  background-image: url('flamenew.png');
+  background-repeat: no-repeat;
+  image-rendering: pixelated;
+  transform: scale(0.384); /* 64 / 500 = 0.128 */
+  transform-origin: top left;
+}
+.fire-wrapper
+{
+  width: 64px;
+  height: 64px;
+}
