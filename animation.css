@@ -11,11 +11,11 @@
   background-image: url('flamenew.png');
   background-repeat: no-repeat;
   image-rendering: pixelated;
-  transform: scale(0.384); /* 64 / 500 = 0.128 */
+  transform: scale(0.192); /* 64 / 500 = 0.128 */
   transform-origin: top left;
 }
 .fire-wrapper
 {
-  width: 64px;
-  height: 64px;
+  width: 32px;
+  height: 32px;
 }
